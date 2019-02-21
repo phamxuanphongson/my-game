@@ -45,13 +45,18 @@
 			
 		</section>
 		<section class="nhapTen">
-			<input type="text" onkeyup="nhapTen()" name="" placeholder="Nhập tên vào và cùng kiếm trác nào..." required>
+			<input type="text" class="input-name" onkeyup="nhapTen()" name="" placeholder="Nhập tên vào và cùng kiếm trác nào..." required>
 			<button onclick="start()" >BẮT ĐẦU KIẾM TRÁC !!</button>
 		</section>
 	</section>
 	<section class="modal">
 		<h3>RẤT TIẾC BẠN ĐÃ PHẢI DỪNG CUỘC CHƠI TẠI CÂU HỎI SỐ <span class="stt"></span> !!!</h3>
 		<h3>BẠN NHẬN ĐƯỢC SỐ TIỀN THƯỞNG LÀ : <span class="bonus" ></span></h3>
+		<button class="reload">CHƠI LẠI</button>
+	</section>
+	<section class="modal-2">
+		<h3> CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH TRÒ CHƠI !!!</h3>
+		<h3>BẠN HÃY CỐ GẮNG CHƠI THẬT NHIỀU VÀ CHỤP MÀN HÌNH GỬI CHO ADMIN ĐỂ CÓ CƠ HỘI ĐÓNG GÓP CÂU HỎI NHÉ =))) <span class="bonus" ></span></h3>
 		<button class="reload">CHƠI LẠI</button>
 	</section>
 	</section>
@@ -86,11 +91,17 @@
 		
 		// Hien thi cau hoi sau khi nhap ten
 		function start() {
+			if($('.input-name').val() == ''){
+				alert('Ban phai nhap ten vao !!!');
+				location.reload();
+			}
+			else {
 			$('.nhapTen').css('display','none');
 			$('#wrapper').css('display','block');
 			// $('.allWrap').append('<audio class="audio" style="display : none;" autoplay="autoplay" controls="controls" src="./mp3/do for love-2pac.MP3" ></audio>');
 			$('.audio').prop("volume", 0.5);
 			startGame();
+			}
 		}
 		
 		function loadCauHoi(stt){
@@ -221,10 +232,7 @@
 			})
 		})
 
-		// Ham tao ngau nhien 1 so nguyen 
-		function random1So(min, max) {
-			  return Math.floor(Math.random() * (max - min)) + min;
-			}
+		
 
 
 		// Tao hanh dong hoi khan gia
@@ -287,11 +295,20 @@
 
 		}
 
+		function successBox(stt) {
+			if (stt > 11) {
+				$('#full-wrap').css('filter','blur(5px)');
+				$('.modal-2').css({'display':'block','bottom' : '50%' ,'transition' : '2s'});
+			}
+		}
+
+		
+
 		function calScore(stt) {
 			if (5 <= stt && stt <=10) {
 				bonus =  myQuestions[5].triGia;
 			}
-			else if (10 <= stt && stt <=15) {
+			else if (10 <= stt) {
 				bonus =  myQuestions[10].triGia;
 			}
 			else if (stt<5) {
@@ -304,7 +321,8 @@
 		function startGame(){
 			loadCauHoi(stt);
 			loadDapAn(stt);
-			loadTriGia(stt);	
+			loadTriGia(stt);
+			successBox(stt);
 		}
 	</script>
 

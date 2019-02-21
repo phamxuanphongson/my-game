@@ -107,4 +107,26 @@ const myQuestions  = [
 	],
 	dapAn: "Nguyễn Tuân"
 },
+{
+	cauHoi: "Ai là tác giả của bài hát Do For Love ?",
+	triGia : "19.000.000 VND",
+	traLoi: [
+		"2PAC",
+		"Vẫn Là 2PAC",
+		"Giống Vẫn Là 2Pac",
+		"TUPAC SHAKUR"
+	],
+	dapAn: "2PAC"
+},
+{
+	cauHoi: "Cứng dài do người tạo, càng mút mạnh càng chảy nước là cái gì ?",
+	triGia : "25.000.000 VND",
+	traLoi: [
+		"Đá",
+		"Con chim non trên cành cây",
+		"Ống nước",
+		"Cái mà ai cũng biết"
+	],
+	dapAn: "Đá"
+},
 ];

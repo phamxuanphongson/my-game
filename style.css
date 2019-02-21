@@ -279,12 +279,37 @@
 		padding: 70px;
 		display: none;
 	}
+	.modal-2{
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		bottom: -27%;
+		text-align: center;
+		background: white;
+		padding: 70px;
+		display: none;
+	}
 	.modal>h3{
 		color: red;
 		margin-bottom: 30px;
     	font-size: 25px;
 	}
+	.modal-2>h3{
+		color: red;
+		margin-bottom: 30px;
+    	font-size: 25px;
+	}
 	.modal>button{
+		width: 150px;
+		height: 60px;
+		background: red;
+		color: white;
+		font-weight: bold;
+		border-radius: 5px;
+		border: 0;
+		font-size: 20px;
+	}
+	.modal-2>button{
 		width: 150px;
 		height: 60px;
 		background: red;
