@@ -69,11 +69,27 @@
 		function random1So(min, max) {
 			  return Math.floor(Math.random() * (max - min)) + min;
 		}
+
+		function randomArrMinMax(arrayLength,min,max) {
+			var newListDapAn = [];
+			var i = 0;
+			while(i<arrayLength){
+				ran = random1So(min,max);
+				if (newListDapAn.includes(ran) != true) {
+					newListDapAn.push(ran);
+					i++;
+					
+				}
+			}
+			return newListDapAn;
+		}
 		
 		// Hien thi cau hoi sau khi nhap ten
 		function start() {
 			$('.nhapTen').css('display','none');
 			$('#wrapper').css('display','block');
+			$('.allWrap').append('<audio class="audio" style="display : none;" autoplay="autoplay" controls="controls" src="./mp3/do for love-2pac.MP3" ></audio>');
+			$('.audio').prop("volume", 0.5);
 			startGame();
 		}
 		
@@ -81,21 +97,12 @@
 			cauHoiHienTai = myQuestions[stt].cauHoi;
 			$('.cauhoi>h2').text(cauHoiHienTai);
 		}
+
 		function loadDapAn(stt){
 			listDapAn = myQuestions[stt].traLoi;
 			
 			container = ``;
-			var newListDapAn = [];
-
-			var i = 0;
-			while(i<4){
-				ran = random1So(0,4);
-				if (newListDapAn.includes(ran) != true) {
-					newListDapAn.push(ran);
-					i++;
-					
-				}
-			}
+			newListDapAn = randomArrMinMax(4,0,4);
 
 
 			for(var so of newListDapAn){
@@ -107,6 +114,7 @@
 			
 			$('.divTraLoi').html(container);				
 		}
+
 		function loadTriGia(stt){
 			triGiaCauHoi = myQuestions[stt].triGia;
 			$('.markDiv>h2').text(`${stt}:`);
@@ -114,8 +122,6 @@
 		}
 
 		
-
-
 
 		function showCorrect(stt) {
 			
@@ -200,19 +206,17 @@
 			$(listDapAn).each((index,element)=>{
 				if (listDapAn[index] === correctDapAn) {
 					listDapAn.splice(index,1);
+					newListDapAn = randomArrMinMax(2,0,3);
 					x = document.querySelectorAll('.divTraLoi span');
-					for (var i = 0; i < x.length; i++) {
-						if (x[i].textContent === listDapAn[0]) {
-							x[i].parentElement.parentElement.style.display = 'none';
-						}
-						else if(x[i].textContent === listDapAn[1]){
-							x[i].parentElement.parentElement.style.display = 'none';
+					for (var so of newListDapAn){
+
+						for (var i = 0; i < x.length; i++) {
+							if (x[i].textContent === listDapAn[so]) {
+								x[i].parentElement.parentElement.style.display = 'none';
+							}
+						
 						}
 					}
-
-					var ran;
-					
-
 				}
 			})
 		})
