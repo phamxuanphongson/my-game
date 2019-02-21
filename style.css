@@ -1,0 +1,299 @@
+*{
+		margin: 0;padding: 0;box-sizing: border-box;
+	}
+	#full-wrap{
+		position: relative;
+		width: 100%;
+		height: 950px;
+		background-image: url(../Assignment/images/l7K2rGK.jpg);
+
+	}
+	#wrapper{
+		width: 100%;
+		height: 950px;
+		display: none;
+		position: relative;
+	}
+	.wrap{
+		
+		width: 60%;
+		height: 950px;
+		margin: auto;
+		position: relative;
+	}
+	.img-logo{
+		position: absolute;
+		left: 51%;
+		transform: translate(-50%,-50%);
+		top: 20%;
+	}
+	.cauhoi{
+		width: 100%;
+		height: 200px;
+		background: #324388;
+		position: absolute;
+		left: 51%;
+		transform: translate(-50%,-50%);
+		top: 55%;
+		border-radius: 20px;
+		border: 1px solid black;
+		line-height: 200px;
+		text-align: center;
+		color: white;
+	}
+	.cauhoi>h2{
+		font-size: 30px;
+	}
+	.A,.B,.C,.D{
+		width: 40%;
+		height: 100px;
+		background: #324388;
+		border-radius: 10px;
+		border: 1px solid black;
+		line-height: 100px;
+		color: white;
+		text-align: center;
+		padding-left: 5px;
+		cursor: pointer;
+	}
+	.A{
+		position: absolute;
+		left: 1%;
+		bottom: 20%;
+	}
+	.B{
+		position: absolute;
+		right: -1%;
+		bottom: 20%;
+	}
+	.C{
+		position: absolute;
+		left: 1%;
+		bottom: 5%;
+	}
+	.D{
+		position: absolute;
+		right: -1%;
+		bottom: 5%;
+	}
+	.nameDiv,.markDiv{
+		width: 20%;
+		height: 60px;
+		border-radius: 10px;
+		border: 1px solid white;
+		position: absolute;
+		line-height: 60px;
+		color: white;
+		padding-left: 10px;
+	}
+	.nameDiv{
+		left: 5%;
+		top: 5%;
+	}
+	.nameDiv>h2{
+		line-height: 60px;
+		padding-right: 10px;
+		float: left;
+	}
+	.nameDiv>span{
+		font-size: 25px;
+	}
+	.markDiv{
+		right: 5%;
+		top: 5%;
+	}
+	.markDiv>h2{
+		line-height: 60px;
+		padding-right: 10px;
+		float: left;
+	}
+	.markDiv>span{
+		font-size: 25px;
+	}
+	.nhapTen{
+		width: 50%;
+		height:150px;
+		display: flex;
+		position: absolute;
+		left: 50%;
+		top: 45%;
+		transform: translate(-50%,-50%);
+	}
+	.nhapTen>input{
+		display: block;
+		width: 60%;
+		border-radius: 10px;
+		border: 1px solid black;
+		padding-left: 10px;
+		font-size: 85px;
+	}
+	.nhapTen>input::placeholder{
+		font-size: 30px;
+	}
+	.nhapTen>button{
+		display: block;
+	    width: 30%;
+	    margin: 0 auto;
+	    font-size: 24px;
+	    font-weight: bold;
+	    background: white;
+	    border-radius: 10px;
+	    border: 1px solid;
+	    cursor: pointer;
+	}
+	.nhapTen>button:active{
+		color: red;
+	}
+	.sure{
+		border-radius: 50%;
+		width: 130px;
+		height: 130px;
+		position: absolute;
+		left: 51%;
+		bottom: 5%;
+		transform: translate(-50%,-50%);
+		cursor: pointer;
+		font-weight: bold;
+		font-size: 14px;
+		border: 1px solid black;
+		display: none;
+	}
+	.demNguoc{
+		position: absolute;
+		width: 150px;
+		height: 150px;
+		left: 0;
+		top: 9%;
+		text-align: center;
+		line-height: 150px;
+	}
+	.demNguoc>h1{
+		font-size: 100px;
+		color: white;
+	}
+	.chiaDoi{
+		width: 200px;
+		height: 100px;
+		position: absolute;
+		left: 5%;
+		top: 14%;
+		font-weight: bold;
+		font-size: 25px;
+		border-radius: 10px;
+		border: 1px solid black;
+		color:white;
+		background: #324388;
+		cursor: pointer;
+
+	}
+	.dapAn{
+		width: 40%;
+		height: 100px;
+		background: #324388;
+		border-radius: 10px;
+		border: 1px solid black;
+		line-height: 100px;
+		color: white;
+		text-align: center;
+		padding-left: 5px;
+		cursor: pointer;
+	}
+	.chose{
+		background: green !important;
+	}
+	.divTraLoi>.dapAn:first-child{
+		position: absolute;
+		left: 1%;
+		bottom: 20%;
+	}
+	.divTraLoi>.dapAn:nth-child(2){
+		position: absolute;
+		right: -1%;
+		bottom: 20%;
+	}
+	.divTraLoi>.dapAn:nth-child(3){
+		position: absolute;
+		left: 1%;
+		bottom: 5%;
+	}
+	.divTraLoi>.dapAn:nth-child(4){
+		position: absolute;
+		right: -1%;
+		bottom: 5%;
+	}
+	.redbg{
+		background: red !important;
+	}
+	.khanGia{
+		width: 200px;
+		height: 100px;
+		position: absolute;
+		right: 5%;
+		top: 14%;
+		font-weight: bold;
+		font-size: 25px;
+		border-radius: 10px;
+		border: 1px solid black;
+		color:white;
+		background: #324388;
+		cursor: pointer;
+		/*display: none;*/
+	}
+	.khanGiaWrap{
+		width: 40%;
+		position: absolute;
+		top: 14%;
+		right: 1%;
+		height: 275px;
+		background: #324388;
+		padding-top: 10px;
+		border-radius: 10px;
+    	border: 1px solid black;
+    	opacity: 0;
+    	display: flex;
+	}
+	.khanGiaDiv{
+		width: 23%;
+		height: 320px;
+		text-align: center;
+		color: white;
+		margin: 0 auto;
+	}
+	.khanGiaDiv>img{
+		width: 75%;
+	}
+	.khanGiaDiv>h1{
+		font-size: 17px;
+		margin: 15px 0;
+	}
+	.khanGiaDiv>h2{
+		font-size: 20px;
+	}
+	.modal{
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		bottom: -27%;
+		text-align: center;
+		background: white;
+		padding: 70px;
+		display: none;
+	}
+	.modal>h3{
+		color: red;
+		margin-bottom: 30px;
+    	font-size: 25px;
+	}
+	.modal>button{
+		width: 150px;
+		height: 60px;
+		background: red;
+		color: white;
+		font-weight: bold;
+		border-radius: 5px;
+		border: 0;
+		font-size: 20px;
+	}
+	.allWrap{
+		position: relative;
+	}

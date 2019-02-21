@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Ai La Trieu Phu</title>
+	<script src="js/QnA2.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+</head>
+<body>
+	<section class="allWrap">
+		<section id="full-wrap">
+		
+		<section id="wrapper">
+			
+			<section class="nameDiv">
+				<h2>NGƯỜI CHƠI :</h2><span></span>
+			</section>
+			<button class="chiaDoi" >50-50</button>
+			<section class="wrap">
+				<img class="img-logo" src="images/ai-la-trieu-phu.png" alt="">
+				<section class="demNguoc">
+					<h1></h1>
+				</section>
+				<section class="cauhoi">
+					<h2></h2>
+				</section>
+				<section class="divTraLoi">
+					
+				</section>
+				<button class="sure" onclick="demNguoc()">TÔI CHẮC CHẮN !</button>
+			</section>
+
+			<section class="markDiv">
+				<h2>1:</h2><span></span>
+			</section>
+
+			<section class="khanGiaWrap">
+				
+			</section>
+
+			<button class="khanGia">Hỏi Khán Giả</button>
+			
+		</section>
+		<section class="nhapTen">
+			<input type="text" onkeyup="nhapTen()" name="" placeholder="Nhập tên vào và cùng kiếm trác nào..." required>
+			<button onclick="start()" >BẮT ĐẦU KIẾM TRÁC !!</button>
+		</section>
+	</section>
+	<section class="modal">
+		<h3>RẤT TIẾC BẠN ĐÃ PHẢI DỪNG CUỘC CHƠI TẠI CÂU HỎI SỐ <span class="stt"></span> !!!</h3>
+		<h3>BẠN NHẬN ĐƯỢC SỐ TIỀN THƯỞNG LÀ : <span class="bonus" ></span></h3>
+		<button class="reload">CHƠI LẠI</button>
+	</section>
+	</section>
+	
+
+	
+
+	<script type="text/javascript">
+		function nhapTen(){
+			var ten = $(".nhapTen>input").val();
+			$(".nameDiv>span").text(ten);
+		}
+		
+		// Ham tao ngau nhien 1 so nguyen 
+		function random1So(min, max) {
+			  return Math.floor(Math.random() * (max - min)) + min;
+		}
+		
+		// Hien thi cau hoi sau khi nhap ten
+		function start() {
+			$('.nhapTen').css('display','none');
+			$('#wrapper').css('display','block');
+			startGame();
+		}
+		
+		function loadCauHoi(stt){
+			cauHoiHienTai = myQuestions[stt].cauHoi;
+			$('.cauhoi>h2').text(cauHoiHienTai);
+		}
+		function loadDapAn(stt){
+			listDapAn = myQuestions[stt].traLoi;
+			
+			container = ``;
+			var newListDapAn = [];
+
+			var i = 0;
+			while(i<4){
+				ran = random1So(0,4);
+				if (newListDapAn.includes(ran) != true) {
+					newListDapAn.push(ran);
+					i++;
+					
+				}
+			}
+
+
+			for(var so of newListDapAn){
+				
+				container += `<section class="dapAn" onclick="chonDapAn('${listDapAn[so]}',this)">
+					<h2><span>${listDapAn[so]}</span></h2>
+				</section>`;
+			}
+			
+			$('.divTraLoi').html(container);				
+		}
+		function loadTriGia(stt){
+			triGiaCauHoi = myQuestions[stt].triGia;
+			$('.markDiv>h2').text(`${stt}:`);
+			$('.markDiv>span').text(triGiaCauHoi);
+		}
+
+		
+
+
+
+		function showCorrect(stt) {
+			
+			var correctDapAn = myQuestions[stt].dapAn;
+			x = document.querySelectorAll('.divTraLoi span');
+			
+			x.forEach(item=>{
+				if (item.textContent == correctDapAn) {
+					var timeleft = 9;
+					
+				    var downloadTimer = setInterval(function(){
+				    
+				    var nhapNhay = setInterval(function(){
+				    	// debugger;
+					   $(item).parent().parent().toggleClass('redbg');
+					   timeleft--;
+					   if(timeleft === 0){
+				    	clearInterval(nhapNhay);
+				    	clearInterval(downloadTimer);
+
+				    }
+
+					 },90);
+				    },1000);
+				}
+
+			});
+
+
+		}
+
+		// chon dap an va doi mau bg cua dap an
+		var cauTraLoiToBtn ;
+
+		function chonDapAn(cauTraLoi,thiselement) {
+			
+			$('.chose').removeClass('chose');
+		
+			$(thiselement).addClass('chose');
+			
+			$('.sure').css('display','block');
+			cauTraLoiToBtn = cauTraLoi;
+		}
+
+		// check dap an sau khi click
+		function checkAns() {
+			var correctDapAn = myQuestions[stt].dapAn;
+
+			if (cauTraLoiToBtn === correctDapAn ) {
+				$('.sure').css({'display' :'none','background' : 'white'});
+				stt++;
+				startGame();
+			}
+			else{
+				showCorrect(stt);
+				var timeleft = 3;
+				
+			    var downloadTimer = setInterval(function(){
+			    timeleft--;
+			    if(timeleft <= 0){
+			    	clearInterval(downloadTimer);
+			    	failBox(stt);
+			    	}
+			    	},1000);
+			}
+
+				if ($('.khanGiaWrap').css('opacity') == 1) {
+					$('.khanGiaWrap').css('display','none');
+			}
+		}
+		
+
+		
+
+
+
+		// Tao hanh dong chia doi dap an
+		$('.chiaDoi').click(function(){
+			$(this).css('display','none');
+			var correctDapAn = myQuestions[stt].dapAn;
+			var listDapAn = myQuestions[stt].traLoi;
+			$(listDapAn).each((index,element)=>{
+				if (listDapAn[index] === correctDapAn) {
+					listDapAn.splice(index,1);
+					x = document.querySelectorAll('.divTraLoi span');
+					for (var i = 0; i < x.length; i++) {
+						if (x[i].textContent === listDapAn[0]) {
+							x[i].parentElement.parentElement.style.display = 'none';
+						}
+						else if(x[i].textContent === listDapAn[1]){
+							x[i].parentElement.parentElement.style.display = 'none';
+						}
+					}
+
+					var ran;
+					
+
+				}
+			})
+		})
+
+		// Ham tao ngau nhien 1 so nguyen 
+		function random1So(min, max) {
+			  return Math.floor(Math.random() * (max - min)) + min;
+			}
+
+
+		// Tao hanh dong hoi khan gia
+		$('.khanGia').click(function(){
+			var correctDapAn = myQuestions[stt].dapAn;
+			var listDapAn = myQuestions[stt].traLoi;
+			// tao 1 mang moi voi random so tu 0 den het do dai cua listDapAn
+			var newListDapAn = [];
+			var i = 0;
+			while(i<4){
+				ran = random1So(0,3);
+				newListDapAn.push(ran);
+				i++;
+			}
+			var container =``;
+			for( var element of newListDapAn){
+				container += `
+					<section class="khanGiaDiv">
+						<img src="images/khangia_${element}.png">
+						<h1>Tôi chắc chắn là :</h1>
+						<h2>${listDapAn[element]}</h2>
+					</section>
+				`;
+			}
+			$('.khanGiaWrap').html(container);
+			$(this).css('display','none');
+			$('.khanGiaWrap').css({'opacity' :'1','transition':'1.5s'});
+
+			
+
+		});
+
+		function demNguoc(){
+			
+			$('.dapAn').attr('onclick', '');
+			$('.sure').css('background','green');
+			var timeleft = 4;
+			
+		    var downloadTimer = setInterval(function(){
+		    timeleft--;
+		    $('.demNguoc>h1').text(timeleft);
+		    if(timeleft <= 0){
+		    	clearInterval(downloadTimer);
+		    	$('.demNguoc>h1').empty();
+		    	checkAns();
+		    }
+		    },1000);
+
+		}
+
+		function failBox(stt) {
+			bonus = calScore(stt);
+			$('#full-wrap').css('filter','blur(5px)');
+			$('.modal').css({'display':'block','bottom' : '50%' ,'transition' : '2s'});
+			$('.stt').text(stt);
+			$('.bonus').text(bonus);
+			$('.reload').click(function(){
+				location.reload();
+			})
+
+		}
+
+		function calScore(stt) {
+			if (5 <= stt && stt <=10) {
+				bonus =  myQuestions[5].triGia;
+			}
+			else if (10 <= stt && stt <=15) {
+				bonus =  myQuestions[10].triGia;
+			}
+			else if (stt<5) {
+				bonus = '0 VND';
+			}
+			return bonus;
+		}
+
+		let stt = 1;
+		function startGame(){
+			loadCauHoi(stt);
+			loadDapAn(stt);
+			loadTriGia(stt);	
+		}
+	</script>
+
+</body>
+</html>
