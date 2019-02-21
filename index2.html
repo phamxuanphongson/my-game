@@ -83,7 +83,6 @@
 				if (newListDapAn.includes(ran) != true) {
 					newListDapAn.push(ran);
 					i++;
-					
 				}
 			}
 			return newListDapAn;
@@ -98,7 +97,7 @@
 			else {
 			$('.nhapTen').css('display','none');
 			$('#wrapper').css('display','block');
-			// $('.allWrap').append('<audio class="audio" style="display : none;" autoplay="autoplay" controls="controls" src="./mp3/do for love-2pac.MP3" ></audio>');
+			$('.allWrap').append('<audio class="audio" style="display : none;" autoplay="autoplay" controls="controls" src="./mp3/do for love-2pac.MP3" ></audio>');
 			$('.audio').prop("volume", 0.5);
 			startGame();
 			}
